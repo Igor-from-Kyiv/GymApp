@@ -16,6 +16,9 @@
             android:name=".WorkoutHandlerActivity"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".WorkoutsListActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
