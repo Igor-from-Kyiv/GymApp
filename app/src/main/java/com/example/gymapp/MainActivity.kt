@@ -152,6 +152,12 @@ class MainActivity : AppCompatActivity() {
         val barChartEntries = mutableListOf<BarEntry>()
         val lineChartEntries = mutableListOf<Entry>()
 
+        val workoutsListButton = binding.workoutsList
+        workoutsListButton.setOnClickListener {
+            val intent = Intent(this, WorkoutsListActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
 
