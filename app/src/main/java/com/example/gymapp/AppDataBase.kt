@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.example.gymapp.AppDataBase.Companion.TAGS_NAME
 import java.util.Calendar
 
+
 class AppDataBase(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object{
         const val DATABASE_NAME = "GYM_DATABASE"
@@ -101,7 +102,6 @@ class AppDataBase(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
     fun insertExercise(exercise: Exercise, workoutID: Long) {
         // Get writable database
         val db = this.writableDatabase
-        val dbRead = this.readableDatabase
 
         // Create ContentValues object with values to insert
         val vals = ContentValues()
@@ -117,13 +117,11 @@ class AppDataBase(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
         db.close()
     }
 
-
     fun fetchAllWorkoutsCursor(_db: SQLiteDatabase, dateInMilli: Long = 0): Cursor {
         val db = _db
         val cursor = db.rawQuery("SELECT $WORKOUTS_ID, $DATE FROM $WORKOUTS", null)
         return cursor
     }
-
 
 //    fun getWorkoutsList(startDate: Long, endDate: Long): MutableList<Workout> {
     fun getWorkoutsList(): MutableList<Workout> {
@@ -197,7 +195,6 @@ class AppDataBase(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
                 " $TAGS_NAME TEXT)"
         )
     }
-
 
     fun insertTag(tagName: String): Long {
 //         Get writable database

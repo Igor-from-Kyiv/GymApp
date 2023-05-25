@@ -15,9 +15,8 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import java.util.Date
 
+
 class ChartHelper(val chart: BarChart, val data: List<Workout>, var label: String) {
-
-
     init{
         setNewLabel(label)
         updateChartData(data, label)
@@ -26,7 +25,6 @@ class ChartHelper(val chart: BarChart, val data: List<Workout>, var label: Strin
     fun setNewLabel(newLabel: String) {
         this.label = newLabel
     }
-
 
     fun updateChartData (newData: List<Workout>, exercise: String) {
         setNewLabel(exercise)
@@ -51,7 +49,6 @@ class ChartHelper(val chart: BarChart, val data: List<Workout>, var label: Strin
                     exerciseMaxLiftEntries.add(Entry(epochDay.toFloat(), workout.maxLifts[label]!!.toFloat()))
                 }
             }
-
         }
 
         val workoutTotalDataSet = BarDataSet(workoutTotalEntries, "workout total")
@@ -61,16 +58,11 @@ class ChartHelper(val chart: BarChart, val data: List<Workout>, var label: Strin
         exerciseMaxLiftDataSet.color = Color.RED
         exerciseMaxLiftDataSet.lineWidth = 3f
         chart.data = BarData(workoutTotalDataSet, exerciseTotalDataSet )
-        val barData = chart.barData
-//        chart.groupBars(firstDate!!.toFloat(), 0.4f, 0.1f )
         chart.invalidate()
     }
 }
 
-
 class LineChartHelper(val chart: LineChart, val data: List<Workout>, var label: String) {
-
-
     init{
         setNewLabel(label)
         updateChartData(data, label)
@@ -79,7 +71,6 @@ class LineChartHelper(val chart: LineChart, val data: List<Workout>, var label: 
     fun setNewLabel(newLabel: String) {
         this.label = newLabel
     }
-
 
     fun updateChartData (newData: List<Workout>, exercise: String) {
         setNewLabel(exercise)
@@ -119,30 +110,4 @@ class LabelFormatter: ValueFormatter() {
         val mm = localDate.month.value
         return "$dd/$mm"
     }
-}
-
-
-
-
-
-
-
-
-//---------------------------
-class ChartAdapter() {
-    lateinit var chart: Any
-    lateinit var dateSet: Any
-
-
-
-    constructor(_chart: BarChart ): this() {
-        chart = _chart
-
-    }
-
-    constructor(_chart: LineChart): this() {
-        chart = _chart
-    }
-
-
 }

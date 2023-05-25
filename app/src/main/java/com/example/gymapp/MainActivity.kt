@@ -20,7 +20,6 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
 
-
 const val FOUR_WEEKS_MILLISEC: Long = 2_419_200_000 // milliseconds in 4 weeks
 const val DAY_MILLISEC: Long = 86_400_000 // milliseconds in 1 day 1000 * 60 * 60 * 24
 class MainActivity : AppCompatActivity() {
@@ -30,13 +29,6 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        AppDataBase(this).dropTagsTable()
-//        AppDataBase(this).createTagsTable()
-//        AppDataBase(this).updateTagsName("squat")
-//        println(AppDataBase(this).deleteWorkoutById(1))
-//        AppDataBase(this).getAllTags()
-//        AppDataBase(this).openReadableDBtoInspect()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -148,19 +140,11 @@ class MainActivity : AppCompatActivity() {
         linexAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
         linexAxis.valueFormatter = LabelFormatter()
 
-
-        val barChartEntries = mutableListOf<BarEntry>()
-        val lineChartEntries = mutableListOf<Entry>()
-
         val workoutsListButton = binding.workoutsList
         workoutsListButton.setOnClickListener {
             val intent = Intent(this, WorkoutsListActivity::class.java)
             startActivity(intent)
         }
-
-
-
-
 
         val startButton: Button = binding.startButton
         startButton.setOnClickListener {
