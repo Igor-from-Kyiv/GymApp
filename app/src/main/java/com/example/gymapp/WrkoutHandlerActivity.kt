@@ -8,6 +8,7 @@ import android.text.InputType
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.gymapp.AppDataBase.Companion.SQUAT
 import com.example.gymapp.databinding.ActivityWorkoutHandlerBinding
 
 
@@ -20,7 +21,7 @@ class WorkoutHandlerActivity : AppCompatActivity(), CreateExerciseDialog.InputDi
         setContentView(binding.root)
 
         val workout = Workout()
-        var currentExercise = ""
+        var currentExercise = SQUAT
 
         val addButton = binding.addExercise
         addButton.setOnClickListener {

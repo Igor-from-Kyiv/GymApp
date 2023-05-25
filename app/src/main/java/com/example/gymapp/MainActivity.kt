@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.example.gymapp.AppDataBase.Companion.SQUAT
 import com.example.gymapp.databinding.ActivityMainBinding
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
@@ -24,7 +25,6 @@ const val FOUR_WEEKS_MILLISEC: Long = 2_419_200_000 // milliseconds in 4 weeks
 const val DAY_MILLISEC: Long = 86_400_000 // milliseconds in 1 day 1000 * 60 * 60 * 24
 class MainActivity : AppCompatActivity() {
     var now = Clock.System.now().toEpochMilliseconds()
-
     lateinit var binding: ActivityMainBinding
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         lateinit var chartHelper: ChartHelper
         lateinit var lineChartHelper: LineChartHelper
-        var selectedExercise = "squat"
+        var selectedExercise = SQUAT
         var selectedDate: Long
 
         // Select exercise section
@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity() {
                 chartHelper.updateChartData(newData, selectedExercise)
                 lineChartHelper.updateChartData(newData, selectedExercise)
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
