@@ -27,12 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <provider android:name=".AppContentProvider"
-            android:authorities="com.example.gymapp.AppContentProvider"
-            android:enabled="true"
-            android:exported="true"
-            android:readPermission="AppContentProvider._READ_PERMISSION"/>
-
     </application>
 
 </manifest>
