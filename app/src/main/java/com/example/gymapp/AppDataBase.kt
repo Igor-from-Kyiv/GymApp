@@ -31,6 +31,11 @@ class AppDataBase(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
         const val TAGS = "tags"
         const val TAGS_ID = "_id"
         const val TAGS_NAME = "name"
+
+        //default exercise tags (squat, press, dead lift)
+        const val SQUAT = "squat"
+        const val PRESS = "press"
+        const val DEADLIFT = "dead lift"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -52,6 +57,12 @@ class AppDataBase(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
         db.execSQL("CREATE TABLE $TAGS (" +
                 "$TAGS_ID INTEGER PRIMARY KEY," +
                 " $TAGS_NAME TEXT)"
+        )
+        db.execSQL("INSERT INTO $TAGS ($TAGS_NAME) VALUES ('squat')"
+        )
+        db.execSQL("INSERT INTO $TAGS ($TAGS_NAME) VALUES ('press')"
+        )
+        db.execSQL("INSERT INTO $TAGS ($TAGS_NAME) VALUES ('deadlift')"
         )
     }
 
@@ -200,9 +211,7 @@ class AppDataBase(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
 
 
     fun insertTag(tagName: String): Long {
-//         Get writable database
-//        if (getTagByNameOrNull(tagName) == null) {
-        if (true) {
+        if (getTagByNameOrNull(tagName) == null) {
             val db = this.writableDatabase
 
             // Create ContentValues object with values to insert
@@ -232,7 +241,7 @@ class AppDataBase(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
     fun getTagByNameOrNull(name: String): Tag? {
         val db = this.readableDatabase
 
-        val cursor = db.rawQuery("SELECT $TAGS_ID, $TAGS_NAME FROM $TAGS WHERE $TAGS_NAME = $name", null)
+        val cursor = db.rawQuery("SELECT $TAGS_ID, $TAGS_NAME FROM $TAGS WHERE $TAGS_NAME = ?", arrayOf(name))
         if (cursor.moveToFirst()) {
             val tagName = cursor.getString(cursor.getColumnIndexOrThrow(TAGS_NAME))
             val tagId = cursor.getInt(cursor.getColumnIndexOrThrow(TAGS_ID))
