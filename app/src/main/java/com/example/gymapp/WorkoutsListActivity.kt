@@ -17,7 +17,7 @@ class WorkoutsListActivity : AppCompatActivity() {
         val workoutsDataset = AppDataBase(this).getWorkoutsList()
         println(workoutsDataset.toString())
 
-        val recyclerView = findViewById<RecyclerView>(R.id.workouts_list)
+        val recyclerView = binding.workoutsList
         recyclerView.adapter = ItemAdapter(this, workoutsDataset)
 
         // Use this setting to improve performance if you know that changes

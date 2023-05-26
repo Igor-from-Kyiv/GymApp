@@ -36,6 +36,8 @@ class WorkoutHandlerActivity : AppCompatActivity(), CreateExerciseDialog.InputDi
         val stopButton = binding.stopWorkout
         stopButton.setOnClickListener {
             AppDataBase(this).insertWorkout(workout)
+            // return to previous activity
+            finish()
         }
 
         // Select exercise section
