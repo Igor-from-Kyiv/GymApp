@@ -107,9 +107,8 @@ class MainActivity : AppCompatActivity() {
             datePickerDialog.show()
         }
 
-        val currentMonthWorkouts = AppDataBase(this).getWorkoutsList()
         now = Clock.System.now().toEpochMilliseconds()
-        val currentMonthWorkouts2 = AppDataBase(this).getWorkoutsListByDate(now - FOUR_WEEKS_MILLISEC, now + DAY_MILLISEC)
+        val workouts = AppDataBase(this).getWorkoutsListByDate(now - FOUR_WEEKS_MILLISEC, now + DAY_MILLISEC)
 
         val barChart = binding.workoutBarChart
         barChart.setBackgroundColor(Color.BLUE)
@@ -123,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         barxAxis.setDrawLabels(true)
         barxAxis.position = XAxis.XAxisPosition.BOTTOM
         barxAxis.valueFormatter = LabelFormatter()
-        chartHelper = ChartHelper(barChart, currentMonthWorkouts2, selectedExercise)
+        chartHelper = ChartHelper(barChart, workouts, selectedExercise)
 
 
         val lineChart = binding.workoutLineChart
@@ -133,7 +132,7 @@ class MainActivity : AppCompatActivity() {
         lineChart.axisLeft.setZeroLineWidth(2f)
         lineChart.axisLeft.zeroLineColor = Color.BLUE
         lineChart.xAxis.granularity = 1f
-        lineChartHelper = LineChartHelper(lineChart, currentMonthWorkouts2, selectedExercise)
+        lineChartHelper = LineChartHelper(lineChart, workouts, selectedExercise)
         val linexAxis = lineChart.xAxis
         linexAxis.setDrawLabels(true)
         linexAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE

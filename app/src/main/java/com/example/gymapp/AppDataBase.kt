@@ -130,7 +130,7 @@ class AppDataBase(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
 
     fun fetchAllWorkoutsCursor(_db: SQLiteDatabase, dateInMilli: Long = 0): Cursor {
         val db = _db
-        val cursor = db.rawQuery("SELECT $WORKOUTS_ID, $DATE FROM $WORKOUTS", null)
+        val cursor = db.rawQuery("SELECT $WORKOUTS_ID, $DATE FROM $WORKOUTS ORDER BY $DATE DESC", null)
         return cursor
     }
 

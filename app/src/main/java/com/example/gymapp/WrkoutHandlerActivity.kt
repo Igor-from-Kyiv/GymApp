@@ -37,7 +37,7 @@ class WorkoutHandlerActivity : AppCompatActivity(), CreateExerciseDialog.InputDi
         stopButton.setOnClickListener {
             AppDataBase(this).insertWorkout(workout)
             // return to previous activity
-            finish()
+            // finish()
         }
 
         // Select exercise section
@@ -55,10 +55,6 @@ class WorkoutHandlerActivity : AppCompatActivity(), CreateExerciseDialog.InputDi
                 id: Long
             ) {
                 val selectedOption = view?.findViewById<TextView>(android.R.id.text1)?.text
-                Toast.makeText(
-                    this@WorkoutHandlerActivity,
-                    "test position: $selectedOption, id: $id", Toast.LENGTH_SHORT
-                ).show()
                 currentExercise = selectedOption.toString()
             }
 
